@@ -103,7 +103,10 @@
             <option value="">--Select--</option>
             <option value="B737-800">Boeing 737-800</option>
             <option value="B737-600">Boeing 737-600</option>
+            <option value="ATR72-500">ATR72-500</option>
+            <option value="ATR72-600">ATR72-600</option>
             <option value="A330-200">Airbus A330-200</option>
+            <option value="A330-200 JA-JB-JC">A330-200 JA-JB-JC</option>
             <option value="B737-700">Boeing 737-700</option>
         </select>
     </div>
@@ -179,29 +182,72 @@
     </div>
 </div>
 
-<script>
+<script> //Basic weight Data
 const weightData = {
-    '7TVJJ': 43211,
+    '7TVJJ': 43211,  //B737-800
     '7TVJK': 43212,
-    '7TVKS': 40321,
+    '7TVJL': 43213,
+    '7TVJM': 43214,
+    '7TVJN': 43215,
+    '7TVJO': 43216,
+    '7TVJP': 43217,
+    '7TVKA': 43223,
+    '7TVKB': 43224,
+    '7TVKC': 43225,
+    '7TVKD': 43226,
+    '7TVKE': 43227,
+    '7TVKF': 43228,
+    '7TVKG': 43229,
+    '7TVKH': 43230,
+    '7TVKI': 43231,
+    '7TVKJ': 43232,
+    '7TVKK': 43233,
+    '7TVKL': 43234,
+    '7TVKM': 43235,
+    '7TVKN': 43236,
+    '7TVKO': 43237,
+    '7TVKP': 43238,
+    '7TVKQ': 43239,
+    '7TVKR': 43240, 
+    '7TVKS': 40321,  //B737-700
     '7TVKT': 40322,
-    '7TVJQ': 39000,
+    '7TVJQ': 39000,  //B737-600
     '7TVJR': 39001,
     '7TVJS': 39002,
     '7TVJT': 39003,
     '7TVJU': 39004,
-    '7TVJV': 122053,
+    '7TVJV': 122053,  //A330-200
     '7TVJW': 122166,
     '7TVJX': 122462,
     '7TVJY': 122047,
-    '7TVJZ': 121376
+    '7TVJZ': 121376, 
+    '7TVJA': 124843,  //A330-200 ja jb jc
+    '7TVJB': 124515, 
+    '7TVJC': 124590, 
+    '7T-VUT': 1258,  //ATR72-600 
+    '7T-VUV': 1266,
+    '7T-VUW': 1267,
+    '7T-VUI': 1268,  //ATR72-500 
+    '7T-VUJ': 1269,
+    '7T-VUK': 1270,
+    '7T-VUL': 1271,
+    '7T-VUM': 1272,
+    '7T-VUN': 1273,
+    '7T-VUO': 1274,
+    '7T-VUP': 1275,
+    '7T-VUQ': 1276,
+    '7T-VVQ': 1275,
+    '7T-VVR': 1276
 };
 
 const limitationData = {
     'B737-800': { mtow: 79015, mlw: 65317 },
     'B737-700': { mtow: 74000, mlw: 60123 },
     'A330-200': { mtow: 230000, mlw: 180000 },
-    'B737-600': { mtow: 65090, mlw: 54657 }
+    'A330-200 JA-JB-JC': { mtow: 238000, mlw: 182000 },
+    'B737-600': { mtow: 65090, mlw: 54657 },
+    'ATR72-500': { mtow: 22800, mlw: 22350 },
+    'B737-600': { mtow: 23000, mlw: 22350 },
 };
 
 let defaultBasicWeight = 0;
@@ -224,7 +270,31 @@ function updateAircraftOptions(selectElement) {
     // Populate tail numbers and PNC options based on aircraft type
     if (aircraftType === 'B737-800') {
         aircraftOptions.innerHTML += '<option value="7TVJJ">7TVJJ</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJK">7TVJK</option>';
+aircraftOptions.innerHTML += '<option value="7TVJK">7TVJK</option>';
+aircraftOptions.innerHTML += '<option value="7TVJL">7TVJL</option>';
+aircraftOptions.innerHTML += '<option value="7TVJM">7TVJM</option>';
+aircraftOptions.innerHTML += '<option value="7TVJN">7TVJN</option>';
+aircraftOptions.innerHTML += '<option value="7TVJO">7TVJO</option>';
+aircraftOptions.innerHTML += '<option value="7TVJP">7TVJP</option>';
+aircraftOptions.innerHTML += '<option value="7TVKA">7TVKA</option>';
+aircraftOptions.innerHTML += '<option value="7TVKB">7TVKB</option>';
+aircraftOptions.innerHTML += '<option value="7TVKC">7TVKC</option>';
+aircraftOptions.innerHTML += '<option value="7TVKD">7TVKD</option>';
+aircraftOptions.innerHTML += '<option value="7TVKE">7TVKE</option>';
+aircraftOptions.innerHTML += '<option value="7TVKF">7TVKF</option>';
+aircraftOptions.innerHTML += '<option value="7TVKG">7TVKG</option>';
+aircraftOptions.innerHTML += '<option value="7TVKH">7TVKH</option>';
+aircraftOptions.innerHTML += '<option value="7TVKI">7TVKI</option>';
+aircraftOptions.innerHTML += '<option value="7TVKJ">7TVKJ</option>';
+aircraftOptions.innerHTML += '<option value="7TVKK">7TVKK</option>';
+aircraftOptions.innerHTML += '<option value="7TVKL">7TVKL</option>';
+aircraftOptions.innerHTML += '<option value="7TVKM">7TVKM</option>';
+aircraftOptions.innerHTML += '<option value="7TVKN">7TVKN</option>';
+aircraftOptions.innerHTML += '<option value="7TVKO">7TVKO</option>';
+aircraftOptions.innerHTML += '<option value="7TVKP">7TVKP</option>';
+aircraftOptions.innerHTML += '<option value="7TVKQ">7TVKQ</option>';
+aircraftOptions.innerHTML += '<option value="7TVKR">7TVKR</option>';
+
         pncSelect.innerHTML = '<option value="6">6</option><option value="5">5</option><option value="4">4</option><option value="3">3</option>';
         pncSelect.value = '6';
         pntSelect.value = '2';
@@ -245,12 +315,43 @@ function updateAircraftOptions(selectElement) {
         pntSelect.value = '2';
     } else if (aircraftType === 'B737-600') {
         aircraftOptions.innerHTML += '<option value="7TVJQ">7TVJQ</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJR">7TVJR</option>';
+aircraftOptions.innerHTML += '<option value="7TVJR">7TVJR</option>';
+aircraftOptions.innerHTML += '<option value="7TVJS">7TVJS</option>';
+aircraftOptions.innerHTML += '<option value="7TVJT">7TVJT</option>';
+aircraftOptions.innerHTML += '<option value="7TVJU">7TVJU</option>';
         pncSelect.innerHTML = '<option value="4">4</option><option value="3">3</option>';
         pncSelect.value = '4';
         pntSelect.value = '2';
+    } else if (aircraftType === 'ATR72-500') {
+    aircraftOptions.innerHTML += '<option value="7T-VUI">7T-VUI</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUJ">7T-VUJ</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUK">7T-VUK</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUL">7T-VUL</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUM">7T-VUM</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUN">7T-VUN</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUO">7T-VUO</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUP">7T-VUP</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUQ">7T-VUQ</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VVQ">7T-VVQ</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VVR">7T-VVR</option>';
+    pncSelect.innerHTML = '<option value="2">2</option><option value="3">3</option>';
+    pncSelect.value = '2';  
+    pntSelect.value = '2';
+} else if (aircraftType === 'ATR72-600') {
+    aircraftOptions.innerHTML += '<option value="7T-VUT">7T-VUT</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUV">7T-VUV</option>';
+    aircraftOptions.innerHTML += '<option value="7T-VUW">7T-VUW</option>';
+    pncSelect.innerHTML = '<option value="2">2</option><option value="3">3</option>';
+    pncSelect.value = '2';  
+    pntSelect.value = '2';
+}else if (aircraftType === 'A330-200 JA-JB-JC') {
+    aircraftOptions.innerHTML += '<option value="7TVJA">7TVJA</option>';
+        aircraftOptions.innerHTML += '<option value="7TVJB">7TVJB</option>';
+        aircraftOptions.innerHTML += '<option value="7TVJC">7TVJC</option>';  
+        pncSelect.innerHTML = '<option value="12">12</option><option value="11">11</option><option value="10">10</option><option value="9">9</option><option value="8">8</option><option value="7">7</option><option value="6">6</option>';
+        pncSelect.value = '12';
+        pntSelect.value = '2';
     }
-
     // Pre-fill MTOW and MLW with default values based on aircraft type, but make them editable
     if (limitationData[aircraftType]) {
         mtowField.value = limitationData[aircraftType].mtow;
