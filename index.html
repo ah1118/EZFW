@@ -107,12 +107,30 @@
             display: flex;
             justify-content: space-between;
         }
+
+        /* Background colors for boxes */
+        .box1 {
+            background-color: #ED5564; /* First box color */
+        }
+
+        .box2 {
+            background-color: #FFCE54; /* Second box color */
+        }
+
+        .box3 {
+            background-color: #A0D568; /* Third box color */
+        }
+
+        .box4 {
+            background-color: #4FC1E8; /* Fourth box color */
+        }
+
     </style>
 </head>
 <body>
 
 <!-- Pre-initialized flight boxes with background colors -->
-<div class="dropdown-box">
+<div class="dropdown-box box1">
     <div>
         <label for="aircraft-type">Aircraft Type:</label>
         <select class="aircraft-type" onchange="updateAircraftOptions(this)">
@@ -193,7 +211,7 @@
     </div>
 </div>
 
-<div class="dropdown-box">
+<div class="dropdown-box box2">
     <div>
         <label for="aircraft-type">Aircraft Type:</label>
         <select class="aircraft-type" onchange="updateAircraftOptions(this)">
@@ -274,7 +292,7 @@
     </div>
 </div>
 
-<div class="dropdown-box">
+<div class="dropdown-box box3">
     <div>
         <label for="aircraft-type">Aircraft Type:</label>
         <select class="aircraft-type" onchange="updateAircraftOptions(this)">
@@ -355,11 +373,95 @@
     </div>
 </div>
 
-<script src="weightData1.js"></script>
-<script src="weightData2.js"></script>
+<div class="dropdown-box box4">
+    <div>
+        <label for="aircraft-type">Aircraft Type:</label>
+        <select class="aircraft-type" onchange="updateAircraftOptions(this)">
+            <option value="">--Select--</option>
+            <option value="B737-800">Boeing 737-800</option>
+            <option value="B737-700">Boeing 737-700</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="aircraft-options">Tail Number:</label>
+        <select class="aircraft-options" onchange="updateWeight(this)">
+            <option value="">--Select--</option>
+        </select>
+    </div>
+
+    <div class="crew-container">
+        <div>
+            <label for="pnt">PNT:</label>
+            <select class="pnt" disabled onchange="calculateLimits(this)">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="pnc">PNC:</label>
+            <select class="pnc" disabled onchange="calculateLimits(this)">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="inline">
+        <label for="basic-weight">Basic Weight (kgs):</label>
+        <input type="text" class="basic-weight" readonly>
+    </div>
+
+    <div class="pax-total">Aircraft Limitation:</div>
+    <div class="limitation-section">
+        <input type="number" class="mtow" placeholder="MTOW (kgs)" min="0" oninput="calculateLimits(this)">
+        <input type="number" class="mlw" placeholder="MLW (kgs)" min="0" oninput="calculateLimits(this)">
+    </div>
+
+    <div class="inline">
+        <label for="trip-fuel">Trip Fuel (kgs):</label>
+        <input type="number" class="trip-fuel" oninput="calculateLimits(this)">
+    </div>
+
+    <div class="pax-total">PAX TOTAL:</div>
+
+    <div class="passenger-inputs">
+        <input type="number" class="adt" placeholder="ADT" oninput="calculateLimits(this)">
+        <input type="number" class="chd" placeholder="CHD" oninput="calculateLimits(this)">
+        <input type="number" class="inf" placeholder="INF" oninput="calculateLimits(this)">
+    </div>
+
+    <div class="inline">
+        <label for="bags">BAGS:</label>
+        <input type="number" class="bags" oninput="calculateLimits(this)">
+    </div>
+
+    <div class="limits-container">
+        <div>
+            <div class="limit-label">LIMIT TAKEOFF:</div>
+            <div class="limit-box takeoff-box">
+                <span class="limit-takeoff">0</span> KGS
+            </div>
+        </div>
+
+        <div>
+            <div class="limit-label">LIMIT LANDING:</div>
+            <div class="limit-box landing-box">
+                <span class="limit-landing">0</span> KGS
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Merge weight data into a single object
-    const weightData = { ...weightData1, ...weightData2 };
+    // Object to store tail numbers and their corresponding weights
+    const weightData = {
+        '7TVJJ': 43211,
+        '7TVJK': 43212,
+        '7TVKS': 40321,
+        '7TVKT': 40322
+    };
 
     // Object to store aircraft limitations
     const limitationData = {
@@ -494,7 +596,5 @@
     }
 </script>
 
-<script src="weightData1.js"></script>
-<script src="weightData2.js"></script>
 </body>
 </html>
