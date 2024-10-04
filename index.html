@@ -68,7 +68,7 @@
             padding: 10px;
             font-weight: bold;
             margin-top: 10px;
-            width: calc(50% - 5px);
+            width: calc(80%);
             display: inline-block;
             text-align: center;
         }
@@ -89,236 +89,543 @@
             justify-content: space-between;
         }
 
+        /* Background colors for boxes */
         .box1 {
-            background-color: #ED5564;
+            background-color: #EE5A69;
         }
+
+        .box2 {
+            background-color: #A3D66D;
+        }
+
+        .box3 {
+            background-color: #FFD059;
+        }
+
+        .box4 {
+            background-color: #55C3E9;
+        }
+
     </style>
 </head>
 <body>
 
+<!-- Flight 1 (Box 1) -->
 <div class="dropdown-box box1">
-    <div>
-        <label for="aircraft-type">Aircraft Type:</label>
-        <select class="aircraft-type" onchange="updateAircraftOptions(this)">
-            <option value="">--Select--</option>
-            <option value="B737-800">Boeing 737-800</option>
-            <option value="B737-600">Boeing 737-600</option>
-            <option value="ATR72-500">ATR72-500</option>
-            <option value="ATR72-600">ATR72-600</option>
-            <option value="A330-200">Airbus A330-200</option>
-            <option value="A330-200 JA-JB-JC">A330-200 JA-JB-JC</option>
-            <option value="B737-700">Boeing 737-700</option>
-        </select>
-    </div>
-
-    <div>
-        <label for="aircraft-options">Tail Number:</label>
-        <select class="aircraft-options" onchange="updateWeight(this)">
-            <option value="">--Select--</option>
-        </select>
-    </div>
-
-    <div class="crew-container">
         <div>
-            <label for="pnt">PNT:</label>
-            <select class="pnt" disabled onchange="calculateAdjustedBasicWeight(this)">
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+            <label for="aircraft-type">Aircraft Type:</label>
+            <select class="aircraft-type" onchange="updateAircraftOptions(this)">
+                <option value="">--Select--</option>
+                <option value="B737-800">Boeing 737-800</option>
+                <option value="B737-600">Boeing 737-600</option>
+                <option value="ATR72-500">ATR72-500</option>
+                <option value="ATR72-600">ATR72-600</option>
+                <option value="A330-200">Airbus A330-200</option>
+                <option value="A330-200 JA-JB-JC">A330-200 JA-JB-JC</option>
+                <option value="B737-700">Boeing 737-700</option>
             </select>
         </div>
-
+    
         <div>
-            <label for="pnc">PNC:</label>
-            <select class="pnc" disabled onchange="calculateAdjustedBasicWeight(this)">
+            <label for="aircraft-options">Tail Number:</label>
+            <select class="aircraft-options" onchange="updateWeight(this)">
                 <option value="">--Select--</option>
             </select>
         </div>
-    </div>
-
-    <div class="inline">
-        <label for="basic-weight">Basic Weight (kgs):</label>
-        <input type="text" class="basic-weight" readonly>
-    </div>
-
-    <div class="pax-total">Aircraft Limitation:</div>
-    <div class="limitation-section">
-        <input type="number" class="mtow" placeholder="MTOW (kgs)" min="0" readonly>
-        <input type="number" class="mlw" placeholder="MLW (kgs)" min="0" readonly>
-    </div>
-
-    <div class="inline">
-        <label for="trip-fuel">Trip Fuel (kgs):</label>
-        <input type="number" class="trip-fuel" oninput="calculateAdjustedBasicWeight(this)">
-    </div>
-
-    <div class="pax-total">PAX TOTAL:</div>
-
-    <div class="passenger-inputs">
-        <input type="number" class="adt" placeholder="ADT" oninput="calculateAdjustedBasicWeight(this)">
-        <input type="number" class="chd" placeholder="CHD" oninput="calculateAdjustedBasicWeight(this)">
-        <input type="number" class="inf" placeholder="INF" oninput="calculateAdjustedBasicWeight(this)">
-    </div>
-
-    <div class="inline">
-        <label for="bags">BAGS:</label>
-        <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)">
-    </div>
-
-    <div class="limits-container">
-        <div>
-            <div class="limit-label">LIMIT TAKEOFF:</div>
-            <div class="limit-box takeoff-box">
-                <span class="limit-takeoff">0</span> KGS
+    
+        <div class="crew-container">
+            <div>
+                <label for="pnt">PNT:</label>
+                <select class="pnt" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="pnc">PNC:</label>
+                <select class="pnc" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="">--Select--</option>
+                </select>
             </div>
         </div>
-
-        <div>
-            <div class="limit-label">LIMIT LANDING:</div>
-            <div class="limit-box landing-box">
-                <span class="limit-landing">0</span> KGS
+    
+        <div class="inline">
+            <label for="basic-weight">Basic Weight (kgs):</label>
+            <input type="text" class="basic-weight" readonly>
+        </div>
+    
+        <div class="pax-total">Aircraft Limitation:</div>
+        <div class="limitation-section">
+            <input type="number" class="mtow" placeholder="MTOW (kgs)" min="0" readonly>
+            <input type="number" class="mlw" placeholder="MLW (kgs)" min="0" readonly>
+        </div>
+    
+        <div class="inline">
+            <label for="trip-fuel">Trip Fuel (kgs):</label>
+            <input type="number" class="trip-fuel" disabled oninput="calculateAdjustedBasicWeight(this)">
+        </div>
+        
+        <div class="pax-total">PAX TOTAL:</div>
+        
+        <div class="passenger-inputs">
+            <input type="number" class="adt" placeholder="ADT" disabled oninput="calculateAdjustedBasicWeight(this)">
+            <input type="number" class="chd" placeholder="CHD" disabled oninput="calculateAdjustedBasicWeight(this)">
+            <input type="number" class="inf" placeholder="INF" disabled oninput="calculateAdjustedBasicWeight(this)">
+        </div>
+        
+        <div class="inline">
+            <label for="bags">BAGS:</label>
+            <input type="number" class="bags" disabled oninput="calculateAdjustedBasicWeight(this)">
+        </div>
+    
+        <div class="limits-container">
+            <div>
+                <div class="limit-label">LIMIT TAKEOFF:</div>
+                <div class="limit-box takeoff-box">
+                    <span class="limit-takeoff">0</span> KGS
+                </div>
+            </div>
+    
+            <div>
+                <div class="limit-label">LIMIT LANDING:</div>
+                <div class="limit-box landing-box">
+                    <span class="limit-landing">0</span> KGS
+                </div>
             </div>
         </div>
-    </div>
+    
+</div>
+
+<!-- Flight 2 (Box 2) -->
+<div class="dropdown-box box2">
+        <div>
+            <label for="aircraft-type">Aircraft Type:</label>
+            <select class="aircraft-type" onchange="updateAircraftOptions(this)">
+                <option value="">--Select--</option>
+                <option value="B737-800">Boeing 737-800</option>
+                <option value="B737-600">Boeing 737-600</option>
+                <option value="ATR72-500">ATR72-500</option>
+                <option value="ATR72-600">ATR72-600</option>
+                <option value="A330-200">Airbus A330-200</option>
+                <option value="A330-200 JA-JB-JC">A330-200 JA-JB-JC</option>
+                <option value="B737-700">Boeing 737-700</option>
+            </select>
+        </div>
+    
+        <div>
+            <label for="aircraft-options">Tail Number:</label>
+            <select class="aircraft-options" onchange="updateWeight(this)">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    
+        <div class="crew-container">
+            <div>
+                <label for="pnt">PNT:</label>
+                <select class="pnt" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="pnc">PNC:</label>
+                <select class="pnc" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="inline">
+            <label for="basic-weight">Basic Weight (kgs):</label>
+            <input type="text" class="basic-weight" readonly>
+        </div>
+    
+        <div class="pax-total">Aircraft Limitation:</div>
+        <div class="limitation-section">
+            <input type="number" class="mtow" placeholder="MTOW (kgs)" min="0" readonly>
+            <input type="number" class="mlw" placeholder="MLW (kgs)" min="0" readonly>
+        </div>
+    
+        <div class="inline">
+            <label for="trip-fuel">Trip Fuel (kgs):</label>
+            <input type="number" class="trip-fuel" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+        
+        <div class="pax-total">PAX TOTAL:</div>
+        
+        <div class="passenger-inputs">
+            <input type="number" class="adt" placeholder="ADT" oninput="calculateAdjustedBasicWeight(this)" disabled>
+            <input type="number" class="chd" placeholder="CHD" oninput="calculateAdjustedBasicWeight(this)" disabled>
+            <input type="number" class="inf" placeholder="INF" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+        
+        <div class="inline">
+            <label for="bags">BAGS:</label>
+            <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+    
+        <div class="limits-container">
+            <div>
+                <div class="limit-label">LIMIT TAKEOFF:</div>
+                <div class="limit-box takeoff-box">
+                    <span class="limit-takeoff">0</span> KGS
+                </div>
+            </div>
+    
+            <div>
+                <div class="limit-label">LIMIT LANDING:</div>
+                <div class="limit-box landing-box">
+                    <span class="limit-landing">0</span> KGS
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+<!-- Flight 3 (Box 3) -->
+<div class="dropdown-box box3">
+        <div>
+            <label for="aircraft-type">Aircraft Type:</label>
+            <select class="aircraft-type" onchange="updateAircraftOptions(this)">
+                <option value="">--Select--</option>
+                <option value="B737-800">Boeing 737-800</option>
+                <option value="B737-600">Boeing 737-600</option>
+                <option value="ATR72-500">ATR72-500</option>
+                <option value="ATR72-600">ATR72-600</option>
+                <option value="A330-200">Airbus A330-200</option>
+                <option value="A330-200 JA-JB-JC">A330-200 JA-JB-JC</option>
+                <option value="B737-700">Boeing 737-700</option>
+            </select>
+        </div>
+    
+        <div>
+            <label for="aircraft-options">Tail Number:</label>
+            <select class="aircraft-options" onchange="updateWeight(this)">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    
+        <div class="crew-container">
+            <div>
+                <label for="pnt">PNT:</label>
+                <select class="pnt" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="pnc">PNC:</label>
+                <select class="pnc" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="inline">
+            <label for="basic-weight">Basic Weight (kgs):</label>
+            <input type="text" class="basic-weight" readonly>
+        </div>
+    
+        <div class="pax-total">Aircraft Limitation:</div>
+        <div class="limitation-section">
+            <input type="number" class="mtow" placeholder="MTOW (kgs)" min="0" readonly>
+            <input type="number" class="mlw" placeholder="MLW (kgs)" min="0" readonly>
+        </div>
+    
+        <div class="inline">
+            <label for="trip-fuel">Trip Fuel (kgs):</label>
+            <input type="number" class="trip-fuel" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+        
+        <div class="pax-total">PAX TOTAL:</div>
+        
+        <div class="passenger-inputs">
+            <input type="number" class="adt" placeholder="ADT" oninput="calculateAdjustedBasicWeight(this)" disabled>
+            <input type="number" class="chd" placeholder="CHD" oninput="calculateAdjustedBasicWeight(this)" disabled>
+            <input type="number" class="inf" placeholder="INF" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+        
+        <div class="inline">
+            <label for="bags">BAGS:</label>
+            <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+    
+        <div class="limits-container">
+            <div>
+                <div class="limit-label">LIMIT TAKEOFF:</div>
+                <div class="limit-box takeoff-box">
+                    <span class="limit-takeoff">0</span> KGS
+                </div>
+            </div>
+    
+            <div>
+                <div class="limit-label">LIMIT LANDING:</div>
+                <div class="limit-box landing-box">
+                    <span class="limit-landing">0</span> KGS
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+<!-- Flight 4 (Box 4) -->
+<div class="dropdown-box box4">
+        <div>
+            <label for="aircraft-type">Aircraft Type:</label>
+            <select class="aircraft-type" onchange="updateAircraftOptions(this)">
+                <option value="">--Select--</option>
+                <option value="B737-800">Boeing 737-800</option>
+                <option value="B737-600">Boeing 737-600</option>
+                <option value="ATR72-500">ATR72-500</option>
+                <option value="ATR72-600">ATR72-600</option>
+                <option value="A330-200">Airbus A330-200</option>
+                <option value="A330-200 JA-JB-JC">A330-200 JA-JB-JC</option>
+                <option value="B737-700">Boeing 737-700</option>
+            </select>
+        </div>
+    
+        <div>
+            <label for="aircraft-options">Tail Number:</label>
+            <select class="aircraft-options" onchange="updateWeight(this)">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+    
+        <div class="crew-container">
+            <div>
+                <label for="pnt">PNT:</label>
+                <select class="pnt" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+    
+            <div>
+                <label for="pnc">PNC:</label>
+                <select class="pnc" disabled onchange="calculateAdjustedBasicWeight(this)">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="inline">
+            <label for="basic-weight">Basic Weight (kgs):</label>
+            <input type="text" class="basic-weight" readonly>
+        </div>
+    
+        <div class="pax-total">Aircraft Limitation:</div>
+        <div class="limitation-section">
+            <input type="number" class="mtow" placeholder="MTOW (kgs)" min="0" readonly>
+            <input type="number" class="mlw" placeholder="MLW (kgs)" min="0" readonly>
+        </div>
+    
+        <div class="inline">
+            <label for="trip-fuel">Trip Fuel (kgs):</label>
+            <input type="number" class="trip-fuel" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+        
+        <div class="pax-total">PAX TOTAL:</div>
+        
+        <div class="passenger-inputs">
+            <input type="number" class="adt" placeholder="ADT" oninput="calculateAdjustedBasicWeight(this)" disabled>
+            <input type="number" class="chd" placeholder="CHD" oninput="calculateAdjustedBasicWeight(this)" disabled>
+            <input type="number" class="inf" placeholder="INF" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+        
+        <div class="inline">
+            <label for="bags">BAGS:</label>
+            <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)" disabled>
+        </div>
+    
+        <div class="limits-container">
+            <div>
+                <div class="limit-label">LIMIT TAKEOFF:</div>
+                <div class="limit-box takeoff-box">
+                    <span class="limit-takeoff">0</span> KGS
+                </div>
+            </div>
+    
+            <div>
+                <div class="limit-label">LIMIT LANDING:</div>
+                <div class="limit-box landing-box">
+                    <span class="limit-landing">0</span> KGS
+                </div>
+            </div>
+        </div>
+    
 </div>
 
 <script> //Basic weight Data
-const weightData = {
-    '7TVJJ': 43211,  //B737-800
-    '7TVJK': 43212,
-    '7TVJL': 43213,
-    '7TVJM': 43214,
-    '7TVJN': 43215,
-    '7TVJO': 43216,
-    '7TVJP': 43217,
-    '7TVKA': 43223,
-    '7TVKB': 43224,
-    '7TVKC': 43225,
-    '7TVKD': 43226,
-    '7TVKE': 43227,
-    '7TVKF': 43228,
-    '7TVKG': 43229,
-    '7TVKH': 43230,
-    '7TVKI': 43231,
-    '7TVKJ': 43232,
-    '7TVKK': 43233,
-    '7TVKL': 43234,
-    '7TVKM': 43235,
-    '7TVKN': 43236,
-    '7TVKO': 43237,
-    '7TVKP': 43238,
-    '7TVKQ': 43239,
-    '7TVKR': 43240, 
-    '7TVKS': 40321,  //B737-700
-    '7TVKT': 40322,
-    '7TVJQ': 39000,  //B737-600
-    '7TVJR': 39001,
-    '7TVJS': 39002,
-    '7TVJT': 39003,
-    '7TVJU': 39004,
-    '7TVJV': 122053,  //A330-200
-    '7TVJW': 122166,
-    '7TVJX': 122462,
-    '7TVJY': 122047,
-    '7TVJZ': 121376, 
-    '7TVJA': 124843,  //A330-200 ja jb jc
-    '7TVJB': 124515, 
-    '7TVJC': 124590, 
-    '7T-VUT': 1258,  //ATR72-600 
-    '7T-VUV': 1266,
-    '7T-VUW': 1267,
-    '7T-VUI': 1268,  //ATR72-500 
-    '7T-VUJ': 1269,
-    '7T-VUK': 1270,
-    '7T-VUL': 1271,
-    '7T-VUM': 1272,
-    '7T-VUN': 1273,
-    '7T-VUO': 1274,
-    '7T-VUP': 1275,
-    '7T-VUQ': 1276,
-    '7T-VVQ': 1275,
-    '7T-VVR': 1276
-};
+    const weightData = {
+        '7T-VJK': 43304, //B737-800
+        '7T-VJL': 43309,
+        '7T-VJM': 43341,
+        '7T-VJN': 43304,
+        '7T-VJO': 43394,
+        '7T-VJP': 43424,
+        '7T-VKA': 43684,
+        '7T-VKB': 43624 ,
+        '7T-VKC': 43634,
+        '7T-VKD': 43719,
+        '7T-VKE': 43646,
+        '7T-VKF': 43914,
+        '7T-VKG': 43719,
+        '7T-VKH': 43831,
+        '7T-VKI': 43751,
+        '7T-VKJ': 43518,
+        '7T-VKK': 43798,
+        '7T-VKL': 43958,
+        '7T-VKM': 43834,
+        '7T-VKN': 43836,
+        '7T-VKO': 43816,
+        '7T-VKP': 43831,
+        '7T-VKQ': 43811,
+        '7T-VKR': 43811, 
+        '7T-VKS': 41749,  //B737-700
+        '7T-VKT': 41522,
+        '7T-VJQ': 38857,  //B737-600
+        '7T-VJR': 38701,
+        '7T-VJS': 38830,
+        '7T-VJT': 38991,
+        '7T-VJU': 38857,
+        '7T-VJV': 122053,  //A330-200
+        '7T-VJW': 122166,
+        '7T-VJX': 122462,
+        '7T-VJY': 122047,
+        '7T-VJZ': 121376, 
+        '7T-VJA': 124843,  //A330-200 ja jb jc
+        '7T-VJB': 124515, 
+        '7T-VJC': 124590, 
+        '7T-VUT': 13887,  //ATR72-600 
+        '7T-VUV': 13875,
+        '7T-VUW': 13871,
+        '7T-VUI': 13417,  //ATR72-500 
+        '7T-VUJ': 13417,
+        '7T-VUK': 13706,
+        '7T-VUL': 13802 ,
+        '7T-VUM': 13841 ,
+        '7T-VUN': 13915 ,
+        '7T-VUO': 13764 ,
+        '7T-VUP': 13764 ,
+        '7T-VUQ': 13801 ,
+        '7T-VVQ': 13738 ,
+        '7T-VVR': 13822 
+    };
+    
+    // Limitation data for aircraft types
+    const limitationData = {
+        'B737-800': { mtow: 79015, mlw: 65317 },
+        'B737-700': { mtow: 77564, mlw: 60781 },
+        'A330-200': { mtow: 230000, mlw: 180000 },
+        'B737-600': { mtow: 65090, mlw: 54657 },
+        'ATR72-600': { mtow: 22800, mlw: 22350 },
+        'A330-200': { mtow: 230000, mlw: 180000 },
+        'A330-200 JA-JB-JC': { mtow: 238000, mlw: 182000  },
+    };
+    
+    let defaultBasicWeight = 0;
 
-const limitationData = {
-    'B737-800': { mtow: 79015, mlw: 65317 },
-    'B737-700': { mtow: 74000, mlw: 60123 },
-    'A330-200': { mtow: 230000, mlw: 180000 },
-    'A330-200 JA-JB-JC': { mtow: 238000, mlw: 182000 },
-    'B737-600': { mtow: 65090, mlw: 54657 },
-    'ATR72-500': { mtow: 22800, mlw: 22350 },
-    'B737-600': { mtow: 23000, mlw: 22350 },
-};
+    function toggleFields(flightBox) {
+    const aircraftType = flightBox.querySelector('.aircraft-type').value;
+    const tailNumber = flightBox.querySelector('.aircraft-options').value;
 
-let defaultBasicWeight = 0;
+    const tripFuelField = flightBox.querySelector('.trip-fuel');
+    const adtField = flightBox.querySelector('.adt');
+    const chdField = flightBox.querySelector('.chd');
+    const infField = flightBox.querySelector('.inf');
+    const bagsField = flightBox.querySelector('.bags');
 
-function updateAircraftOptions(selectElement) {
-    const aircraftType = selectElement.value;
-    const flightBox = selectElement.closest('.dropdown-box');
-    const aircraftOptions = flightBox.querySelector('.aircraft-options');
-    const pntSelect = flightBox.querySelector('.pnt');
-    const pncSelect = flightBox.querySelector('.pnc');
-    const mtowField = flightBox.querySelector('.mtow');
-    const mlwField = flightBox.querySelector('.mlw');
-
-    aircraftOptions.innerHTML = '<option value="">--Select--</option>';
-    pntSelect.disabled = false;
-    pncSelect.disabled = false;
-    pncSelect.innerHTML = '<option value="">--Select--</option>';
-    pntSelect.innerHTML = '<option value="2">2</option><option value="3">3</option><option value="4">4</option>';
-
-    // Populate tail numbers and PNC options based on aircraft type
+    if (aircraftType && tailNumber) {
+        // Enable fields when both Aircraft Type and Tail Number are selected
+        tripFuelField.disabled = false;
+        adtField.disabled = false;
+        chdField.disabled = false;
+        infField.disabled = false;
+        bagsField.disabled = false;
+    } else {
+        // Disable fields if one or both are not selected
+        tripFuelField.disabled = true;
+        adtField.disabled = true;
+        chdField.disabled = true;
+        infField.disabled = true;
+        bagsField.disabled = true;
+    }
+}
+    
+    function updateAircraftOptions(selectElement) {
+        const aircraftType = selectElement.value;
+        const flightBox = selectElement.closest('.dropdown-box');
+        const aircraftOptions = flightBox.querySelector('.aircraft-options');
+        const pntSelect = flightBox.querySelector('.pnt');
+        const pncSelect = flightBox.querySelector('.pnc');
+        const mtowField = flightBox.querySelector('.mtow');
+        const mlwField = flightBox.querySelector('.mlw');
+    
+        // Reset the dropdowns and clear fields
+        aircraftOptions.innerHTML = '<option value="">--Select--</option>';
+        pntSelect.disabled = false;
+        pncSelect.disabled = false;
+        pncSelect.innerHTML = '<option value="">--Select--</option>';
+        pntSelect.innerHTML = '<option value="2">2</option><option value="3">3</option><option value="4">4</option>';
+    
+       // Populate tail numbers and PNC options based on aircraft type
     if (aircraftType === 'B737-800') {
-        aircraftOptions.innerHTML += '<option value="7TVJJ">7TVJJ</option>';
-aircraftOptions.innerHTML += '<option value="7TVJK">7TVJK</option>';
-aircraftOptions.innerHTML += '<option value="7TVJL">7TVJL</option>';
-aircraftOptions.innerHTML += '<option value="7TVJM">7TVJM</option>';
-aircraftOptions.innerHTML += '<option value="7TVJN">7TVJN</option>';
-aircraftOptions.innerHTML += '<option value="7TVJO">7TVJO</option>';
-aircraftOptions.innerHTML += '<option value="7TVJP">7TVJP</option>';
-aircraftOptions.innerHTML += '<option value="7TVKA">7TVKA</option>';
-aircraftOptions.innerHTML += '<option value="7TVKB">7TVKB</option>';
-aircraftOptions.innerHTML += '<option value="7TVKC">7TVKC</option>';
-aircraftOptions.innerHTML += '<option value="7TVKD">7TVKD</option>';
-aircraftOptions.innerHTML += '<option value="7TVKE">7TVKE</option>';
-aircraftOptions.innerHTML += '<option value="7TVKF">7TVKF</option>';
-aircraftOptions.innerHTML += '<option value="7TVKG">7TVKG</option>';
-aircraftOptions.innerHTML += '<option value="7TVKH">7TVKH</option>';
-aircraftOptions.innerHTML += '<option value="7TVKI">7TVKI</option>';
-aircraftOptions.innerHTML += '<option value="7TVKJ">7TVKJ</option>';
-aircraftOptions.innerHTML += '<option value="7TVKK">7TVKK</option>';
-aircraftOptions.innerHTML += '<option value="7TVKL">7TVKL</option>';
-aircraftOptions.innerHTML += '<option value="7TVKM">7TVKM</option>';
-aircraftOptions.innerHTML += '<option value="7TVKN">7TVKN</option>';
-aircraftOptions.innerHTML += '<option value="7TVKO">7TVKO</option>';
-aircraftOptions.innerHTML += '<option value="7TVKP">7TVKP</option>';
-aircraftOptions.innerHTML += '<option value="7TVKQ">7TVKQ</option>';
-aircraftOptions.innerHTML += '<option value="7TVKR">7TVKR</option>';
+aircraftOptions.innerHTML += '<option value="7T-VJK">7TVJK</option>';
+aircraftOptions.innerHTML += '<option value="7T-VJL">7TVJL</option>';
+aircraftOptions.innerHTML += '<option value="7T-VJM">7TVJM</option>';
+aircraftOptions.innerHTML += '<option value="7T-VJN">7TVJN</option>';
+aircraftOptions.innerHTML += '<option value="7T-VJO">7TVJO</option>';
+aircraftOptions.innerHTML += '<option value="7T-VJP">7TVJP</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKA">7TVKA</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKB">7TVKB</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKC">7TVKC</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKD">7TVKD</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKE">7TVKE</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKF">7TVKF</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKG">7TVKG</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKH">7TVKH</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKI">7TVKI</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKJ">7TVKJ</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKK">7TVKK</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKL">7TVKL</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKM">7TVKM</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKN">7TVKN</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKO">7TVKO</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKP">7TVKP</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKQ">7TVKQ</option>';
+aircraftOptions.innerHTML += '<option value="7T-VKR">7TVKR</option>';
 
         pncSelect.innerHTML = '<option value="6">6</option><option value="5">5</option><option value="4">4</option><option value="3">3</option>';
         pncSelect.value = '6';
         pntSelect.value = '2';
     } else if (aircraftType === 'B737-700') {
-        aircraftOptions.innerHTML += '<option value="7TVKS">7TVKS</option>';
-        aircraftOptions.innerHTML += '<option value="7TVKT">7TVKT</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VKS">7TVKS</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VKT">7TVKT</option>';
         pncSelect.innerHTML = '<option value="4">4</option><option value="3">3</option>';
         pncSelect.value = '4';
         pntSelect.value = '2';
     } else if (aircraftType === 'A330-200') {
-        aircraftOptions.innerHTML += '<option value="7TVJV">7TVJV</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJW">7TVJW</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJX">7TVJX</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJY">7TVJY</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJZ">7TVJZ</option>';  
+        aircraftOptions.innerHTML += '<option value="7T-VJV">7TVJV</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJW">7TVJW</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJX">7TVJX</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJY">7TVJY</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJZ">7TVJZ</option>';  
         pncSelect.innerHTML = '<option value="12">12</option><option value="11">11</option><option value="10">10</option><option value="9">9</option><option value="8">8</option><option value="7">7</option><option value="6">6</option>';
         pncSelect.value = '12';
         pntSelect.value = '2';
     } else if (aircraftType === 'B737-600') {
-        aircraftOptions.innerHTML += '<option value="7TVJQ">7TVJQ</option>';
-aircraftOptions.innerHTML += '<option value="7TVJR">7TVJR</option>';
-aircraftOptions.innerHTML += '<option value="7TVJS">7TVJS</option>';
-aircraftOptions.innerHTML += '<option value="7TVJT">7TVJT</option>';
-aircraftOptions.innerHTML += '<option value="7TVJU">7TVJU</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJQ">7TVJQ</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJR">7TVJR</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJS">7TVJS</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJT">7TVJT</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJU">7TVJU</option>';
         pncSelect.innerHTML = '<option value="4">4</option><option value="3">3</option>';
         pncSelect.value = '4';
         pntSelect.value = '2';
@@ -345,84 +652,95 @@ aircraftOptions.innerHTML += '<option value="7TVJU">7TVJU</option>';
     pncSelect.value = '2';  
     pntSelect.value = '2';
 }else if (aircraftType === 'A330-200 JA-JB-JC') {
-    aircraftOptions.innerHTML += '<option value="7TVJA">7TVJA</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJB">7TVJB</option>';
-        aircraftOptions.innerHTML += '<option value="7TVJC">7TVJC</option>';  
+        aircraftOptions.innerHTML += '<option value="7T-VJA">7TVJA</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJB">7TVJB</option>';
+        aircraftOptions.innerHTML += '<option value="7T-VJC">7TVJC</option>';  
         pncSelect.innerHTML = '<option value="12">12</option><option value="11">11</option><option value="10">10</option><option value="9">9</option><option value="8">8</option><option value="7">7</option><option value="6">6</option>';
         pncSelect.value = '12';
         pntSelect.value = '2';
     }
-    // Pre-fill MTOW and MLW with default values based on aircraft type, but make them editable
-    if (limitationData[aircraftType]) {
-        mtowField.value = limitationData[aircraftType].mtow;
-        mlwField.value = limitationData[aircraftType].mlw;
-
-        // Add validation to prevent exceeding default MTOW/MLW
-        mtowField.oninput = function() {
-            if (parseFloat(mtowField.value) > limitationData[aircraftType].mtow) {
-                mtowField.value = 0; // Reset to 0 if value exceeds default MTOW
-            }
-        };
-
-        mlwField.oninput = function() {
-            if (parseFloat(mlwField.value) > limitationData[aircraftType].mlw) {
-                mlwField.value = 0; // Reset to 0 if value exceeds default MLW
-            }
-        };
+    
+        // Set default MTOW and MLW values, but allow manual editing
+        if (limitationData[aircraftType]) {
+            mtowField.value = limitationData[aircraftType].mtow;
+            mlwField.value = limitationData[aircraftType].mlw;
+    
+            mtowField.oninput = function() {
+                if (parseFloat(mtowField.value) > limitationData[aircraftType].mtow) {
+                    mtowField.value = 0; // Reset to 0 if value exceeds MTOW
+                }
+            };
+    
+            mlwField.oninput = function() {
+                if (parseFloat(mlwField.value) > limitationData[aircraftType].mlw) {
+                    mlwField.value = 0; // Reset to 0 if value exceeds MLW
+                }
+            };
+        }
+        toggleFields(flightBox);
     }
-}
-
-
-function updateWeight(selectElement) {
-    const tailNumber = selectElement.value;
-    const flightBox = selectElement.closest('.dropdown-box');
-    const basicWeight = weightData[tailNumber] || '';
-    defaultBasicWeight = basicWeight;
-    flightBox.querySelector('.basic-weight').value = basicWeight;
-    calculateAdjustedBasicWeight(selectElement);
-}
-
-function calculateAdjustedBasicWeight(selectElement) {
-    const flightBox = selectElement.closest('.dropdown-box');
-    const basicWeightField = flightBox.querySelector('.basic-weight');
-    let adjustedBasicWeight = defaultBasicWeight;
-
-    const pnt = parseFloat(flightBox.querySelector('.pnt').value) || 2;
-    const pnc = parseFloat(flightBox.querySelector('.pnc').value) || 6;
-
-    const pntAdjustment = (pnt - 2) * 80;
-    const pncAdjustment = (pnc - 6) * 65;
-
-    adjustedBasicWeight += pntAdjustment + pncAdjustment;
-    basicWeightField.value = adjustedBasicWeight.toFixed(2);
-
-    calculateLimits(flightBox, adjustedBasicWeight);
-}
-
-function calculateLimits(flightBox, adjustedBasicWeight) {
-    const mtow = parseFloat(flightBox.querySelector('.mtow').value) || 0;
-    const mlw = parseFloat(flightBox.querySelector('.mlw').value) || 0;
-    const tripFuelValue = parseFloat(flightBox.querySelector('.trip-fuel').value);
-    const adtValue = parseFloat(flightBox.querySelector('.adt').value);
-    const chdValue = parseFloat(flightBox.querySelector('.chd').value) || 0;
-    const infValue = parseFloat(flightBox.querySelector('.inf').value) || 0;
-    const bagsValue = parseFloat(flightBox.querySelector('.bags').value);
-
-    // Check if tripFuelValue, adtValue, or bagsValue are not provided or invalid
-    if (isNaN(tripFuelValue) || isNaN(adtValue) || isNaN(bagsValue) || isNaN(mtow) || isNaN(mlw)) {
-        // If any of the required values is missing or invalid, stop execution
-        return;
+    
+    function updateWeight(selectElement) {
+        const tailNumber = selectElement.value;
+        const flightBox = selectElement.closest('.dropdown-box');
+        const basicWeight = weightData[tailNumber] || '';
+        defaultBasicWeight = basicWeight;
+        flightBox.querySelector('.basic-weight').value = basicWeight;
+        calculateAdjustedBasicWeight(selectElement);
+        toggleFields(flightBox);
     }
-
-    // Calculate LIMIT TAKEOFF and LIMIT LANDING
-    const limitTakeoff = mtow - (adjustedBasicWeight + (adtValue * 80) + (chdValue * 35) + (infValue * 10) + bagsValue);
-    const limitLanding = mlw + tripFuelValue - (adjustedBasicWeight + (adtValue * 80) + (chdValue * 35) + (infValue * 10) + bagsValue);
-
+    
+    function calculateAdjustedBasicWeight(selectElement) {
+        const flightBox = selectElement.closest('.dropdown-box');
+        const basicWeightField = flightBox.querySelector('.basic-weight');
+        let adjustedBasicWeight = defaultBasicWeight;
+    
+        const pnt = parseFloat(flightBox.querySelector('.pnt').value) || 2;
+        const pnc = parseFloat(flightBox.querySelector('.pnc').value) || 6;
+    
+        const pntAdjustment = (pnt - 2) * 80;
+        const pncAdjustment = (pnc - 6) * 65;
+    
+        adjustedBasicWeight += pntAdjustment + pncAdjustment;
+        basicWeightField.value = adjustedBasicWeight.toFixed(2);
+    
+        calculateLimits(flightBox, adjustedBasicWeight);
+    }
+    
+    function calculateLimits(flightBox, adjustedBasicWeight) {
+        const mtow = parseFloat(flightBox.querySelector('.mtow').value) || 0;
+        const mlw = parseFloat(flightBox.querySelector('.mlw').value) || 0;
+        const tripFuelValue = parseFloat(flightBox.querySelector('.trip-fuel').value);
+        const adtValue = parseFloat(flightBox.querySelector('.adt').value);
+        const chdValue = parseFloat(flightBox.querySelector('.chd').value) || 0;
+        const infValue = parseFloat(flightBox.querySelector('.inf').value) || 0;
+        const bagsValue = parseFloat(flightBox.querySelector('.bags').value);
+    
+        // Check if necessary fields are provided
+        if (isNaN(tripFuelValue) || isNaN(adtValue) || isNaN(bagsValue) || isNaN(mtow) || isNaN(mlw)) {
+            return; // Stop execution if missing or invalid values
+        }
+    
+        // Calculate LIMIT TAKEOFF and LIMIT LANDING
+        const limitTakeoff = mtow - (adjustedBasicWeight + (adtValue * 80) + (chdValue * 35) + (infValue * 10) + bagsValue);
+        const limitLanding = mlw + tripFuelValue - (adjustedBasicWeight + (adtValue * 80) + (chdValue * 35) + (infValue * 10) + bagsValue);
     // Update the limit display
-    flightBox.querySelector('.limit-takeoff').innerText = limitTakeoff.toFixed(2);
-    flightBox.querySelector('.limit-landing').innerText = limitLanding.toFixed(2);
+flightBox.querySelector('.limit-takeoff').innerText = limitTakeoff.toFixed(2);
+flightBox.querySelector('.limit-landing').innerText = limitLanding.toFixed(2);
+
+// Clear previous highlights
+flightBox.querySelector('.takeoff-box').style.border = "1px solid black";
+flightBox.querySelector('.landing-box').style.border = "1px solid black";
+
+// Compare and highlight the smaller value in green
+if (limitTakeoff < limitLanding) {
+    flightBox.querySelector('.takeoff-box').style.border = "6px solid green";  // Highlight Limit Takeoff
+} else if (limitLanding < limitTakeoff) {
+    flightBox.querySelector('.landing-box').style.border = "6px solid green";  // Highlight Limit Landing
 }
-</script>
+    }
+    </script>
+    
 
 </body>
 </html>
