@@ -73,6 +73,31 @@
             text-align: center;
         }
 
+        .weight-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.weight-info div {
+    display: flex;
+    justify-content: space-between; /* Space between the label and the result */
+    width: 100%;
+}
+
+.weight-info span {
+    white-space: nowrap; /* Ensure the text doesn't wrap to the next line */
+}
+
+.pax-weight, .epld, .ezfw {
+    margin-left: auto; /* Ensure the results stay on the right side */
+    font-weight: bold; /* Make the results bold */
+}
+
+.unit {
+    margin-left: 10px; /* Adds space between the result and "KGS" */
+}
+
         .limits-container {
             display: flex;
             justify-content: space-between;
@@ -180,18 +205,18 @@
             <input type="number" class="bags" disabled oninput="calculateAdjustedBasicWeight(this)">
         </div>
 
-      <div class="weight-info">
+   <div class="weight-info">
         <div>
-            <span><strong>PAX WEIGHT:</strong> </span>
-            <span class="pax-weight"><strong>0</strong></span> KGS
+            <span><strong>PAX WEIGHT:</strong></span>
+            <span class="pax-weight">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EPLD:</strong> </span>
-            <span class="epld"><strong>0</strong></span> KGS
+            <span><strong>EPLD:</strong></span>
+            <span class="epld">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EZFW:</strong> </span>
-            <span class="ezfw"><strong>0</strong></span> KGS
+            <span><strong>EZFW:</strong></span>
+            <span class="ezfw">0</span><span class="unit">KGS</span>
         </div>
     </div>
     
@@ -283,18 +308,18 @@
             <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)" disabled>
         </div>
 
-      <div class="weight-info">
+  <div class="weight-info">
         <div>
-            <span><strong>PAX WEIGHT:</strong> </span>
-            <span class="pax-weight"><strong>0</strong></span> KGS
+            <span><strong>PAX WEIGHT:</strong></span>
+            <span class="pax-weight">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EPLD:</strong> </span>
-            <span class="epld"><strong>0</strong></span> KGS
+            <span><strong>EPLD:</strong></span>
+            <span class="epld">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EZFW:</strong> </span>
-            <span class="ezfw"><strong>0</strong></span> KGS
+            <span><strong>EZFW:</strong></span>
+            <span class="ezfw">0</span><span class="unit">KGS</span>
         </div>
     </div>
     
@@ -388,16 +413,16 @@
 
       <div class="weight-info">
         <div>
-            <span><strong>PAX WEIGHT:</strong> </span>
-            <span class="pax-weight"><strong>0</strong></span> KGS
+            <span><strong>PAX WEIGHT:</strong></span>
+            <span class="pax-weight">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EPLD:</strong> </span>
-            <span class="epld"><strong>0</strong></span> KGS
+            <span><strong>EPLD:</strong></span>
+            <span class="epld">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EZFW:</strong> </span>
-            <span class="ezfw"><strong>0</strong></span> KGS
+            <span><strong>EZFW:</strong></span>
+            <span class="ezfw">0</span><span class="unit">KGS</span>
         </div>
     </div>
     
@@ -489,18 +514,18 @@
             <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)" disabled>
         </div>
 
-    <div class="weight-info">
+  <div class="weight-info">
         <div>
-            <span><strong>PAX WEIGHT:</strong> </span>
-            <span class="pax-weight"><strong>0</strong></span> KGS
+            <span><strong>PAX WEIGHT:</strong></span>
+            <span class="pax-weight">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EPLD:</strong> </span>
-            <span class="epld"><strong>0</strong></span> KGS
+            <span><strong>EPLD:</strong></span>
+            <span class="epld">0</span><span class="unit">KGS</span>
         </div>
         <div>
-            <span><strong>EZFW:</strong> </span>
-            <span class="ezfw"><strong>0</strong></span> KGS
+            <span><strong>EZFW:</strong></span>
+            <span class="ezfw">0</span><span class="unit">KGS</span>
         </div>
     </div>
     
