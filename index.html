@@ -28,7 +28,7 @@
         }
 
         .dropdown-box > * {
-            margin-bottom: 0.5cm;
+            margin-bottom: 0.3cm;
         }
 
         .inline {
@@ -443,6 +443,21 @@
             <label for="bags">BAGS:</label>
             <input type="number" class="bags" oninput="calculateAdjustedBasicWeight(this)" disabled>
         </div>
+
+    <div class="weight-info">
+        <div>
+            <span><strong>PAX WEIGHT:</strong> </span>
+            <span class="pax-weight"><strong>0</strong></span> KGS
+        </div>
+        <div>
+            <span><strong>EPLD:</strong> </span>
+            <span class="epld"><strong>0</strong></span> KGS
+        </div>
+        <div>
+            <span><strong>EZFW:</strong> </span>
+            <span class="ezfw"><strong>0</strong></span> KGS
+        </div>
+    </div>
     
         <div class="limits-container">
             <div>
@@ -707,39 +722,50 @@ aircraftOptions.innerHTML += '<option value="7T-VKR">7T-VKR</option>';
         calculateLimits(flightBox, adjustedBasicWeight);
     }
     
-    function calculateLimits(flightBox, adjustedBasicWeight) {
-        const mtow = parseFloat(flightBox.querySelector('.mtow').value) || 0;
-        const mlw = parseFloat(flightBox.querySelector('.mlw').value) || 0;
-        const tripFuelValue = parseFloat(flightBox.querySelector('.trip-fuel').value);
-        const adtValue = parseFloat(flightBox.querySelector('.adt').value);
-        const chdValue = parseFloat(flightBox.querySelector('.chd').value) || 0;
-        const infValue = parseFloat(flightBox.querySelector('.inf').value) || 0;
-        const bagsValue = parseFloat(flightBox.querySelector('.bags').value);
-    
-        // Check if necessary fields are provided
-        if (isNaN(tripFuelValue) || isNaN(adtValue) || isNaN(bagsValue) || isNaN(mtow) || isNaN(mlw)) {
-            return; // Stop execution if missing or invalid values
-        }
-    
-        // Calculate LIMIT TAKEOFF and LIMIT LANDING
-        const limitTakeoff = mtow - (adjustedBasicWeight + (adtValue * 80) + (chdValue * 35) + (infValue * 10) + bagsValue);
-        const limitLanding = mlw + tripFuelValue - (adjustedBasicWeight + (adtValue * 80) + (chdValue * 35) + (infValue * 10) + bagsValue);
-    // Update the limit display
-flightBox.querySelector('.limit-takeoff').innerText = limitTakeoff.toFixed(2);
-flightBox.querySelector('.limit-landing').innerText = limitLanding.toFixed(2);
+   function calculateLimits(flightBox, adjustedBasicWeight) {
+    const mtow = parseFloat(flightBox.querySelector('.mtow').value) || 0;
+    const mlw = parseFloat(flightBox.querySelector('.mlw').value) || 0;
+    const tripFuelValue = parseFloat(flightBox.querySelector('.trip-fuel').value);
+    const adtValue = parseFloat(flightBox.querySelector('.adt').value);
+    const chdValue = parseFloat(flightBox.querySelector('.chd').value) || 0;
+    const infValue = parseFloat(flightBox.querySelector('.inf').value) || 0;
+    const bagsValue = parseFloat(flightBox.querySelector('.bags').value);
 
-// Clear previous highlights
-flightBox.querySelector('.takeoff-box').style.border = "1px solid black";
-flightBox.querySelector('.landing-box').style.border = "1px solid black";
-
-// Compare and highlight the smaller value in green
-if (limitTakeoff < limitLanding) {
-    flightBox.querySelector('.takeoff-box').style.border = "6px solid green";  // Highlight Limit Takeoff
-} else if (limitLanding < limitTakeoff) {
-    flightBox.querySelector('.landing-box').style.border = "6px solid green";  // Highlight Limit Landing
-}
+    if (isNaN(tripFuelValue) || isNaN(adtValue) || isNaN(bagsValue) || isNaN(mtow) || isNaN(mlw)) {
+        return;
     }
-    </script>
+
+    // Calculate PAX WEIGHT
+    const paxWeight = (adtValue * 80) + (chdValue * 35) + (infValue * 10);
+
+    // Calculate EPLD
+    const epld = paxWeight + bagsValue;
+
+    // Calculate EZFW
+    const ezfw = adjustedBasicWeight + paxWeight + bagsValue;
+
+    // Display PAX WEIGHT, EPLD, and EZFW
+    flightBox.querySelector('.pax-weight').innerText = paxWeight.toFixed(2);
+    flightBox.querySelector('.epld').innerText = epld.toFixed(2);
+    flightBox.querySelector('.ezfw').innerText = ezfw.toFixed(2);
+
+    // Calculate LIMIT TAKEOFF and LIMIT LANDING
+    const limitTakeoff = mtow - ezfw;
+    const limitLanding = mlw + tripFuelValue - ezfw;
+
+    flightBox.querySelector('.limit-takeoff').innerText = limitTakeoff.toFixed(2);
+    flightBox.querySelector('.limit-landing').innerText = limitLanding.toFixed(2);
+
+    flightBox.querySelector('.takeoff-box').style.border = "1px solid black";
+    flightBox.querySelector('.landing-box').style.border = "1px solid black";
+
+    if (limitTakeoff < limitLanding) {
+        flightBox.querySelector('.takeoff-box').style.border = "6px solid green";
+    } else if (limitLanding < limitTakeoff) {
+        flightBox.querySelector('.landing-box').style.border = "6px solid green";
+    }
+}
+</script>
     
 
 </body>
